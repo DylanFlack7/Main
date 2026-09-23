@@ -21,3 +21,27 @@ for s, count in [('Positive', n_pos), ('Negative', n_neg)]:
 
 df = pd.DataFrame(events)
 print(df)
+
+avg_moves = df.groupby('Surprise').mean()
+print(avg_moves)
+
+labels = ['2Y Yield', '10Y Yield', 'S&P 500', 'USD Index']
+pos = avg_moves.loc['Positive'].values
+neg = avg_moves.loc['Negative'].values
+
+x = np.arange(len(labels))
+w = 0.35
+plt.figure(figsize=(10, 5))
+
+plt.bar(x - w/2, pos, w, label = 'Positive Surprise')
+plt.bar(x + w/2, neg, w, label = 'Negative Surprise')
+
+plt.axhline(0, color = 'black', linewidth = 0.8)
+plt.xticks(x, labels)
+plt.ylabel('Average Same-Day Change (bps / %)')
+plt.title('Market Moves on CPI Surprise Days')
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+plt.savefig('cpi_chart.png')
