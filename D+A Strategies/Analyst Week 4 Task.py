@@ -44,4 +44,4 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-plt.savefig('cpi_chart.png')
+plt.savefig('cpi_chart_simulated.png')
