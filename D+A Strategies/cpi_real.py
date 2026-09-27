@@ -34,6 +34,7 @@ events['group'] = np.where(events['surprise'] > 0, 'Positive',
 
 move_cols = ['d2Y_bps', 'd10Y_bps', 'dSP_pct', 'dUSD_pct']
 avg_moves = events.groupby('group')[move_cols].mean()
+print(avg_moves.round(2))
 
 labels = ['2Y Yield', '10Y Yield', 'S&P 500', 'USD Index']
 pos = avg_moves.loc['Positive'].values
